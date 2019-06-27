@@ -69,8 +69,15 @@ function displayContacts(addressBookToDisplay) {
   contactsList.html(htmlForContactInfo);
 };
 
+function attachContactListeners() {
+  $("ul#contacts").on("click", "li", function() {
+    console.log("The id of this <li> is " + this.id + ".");
+  });
+};
+
 $(document).ready(function() {
   $("form#new-contact").submit(function(event) {
+    attachContactListeners();
     event.preventDefault();
     var inputtedFirstName = $("input#new-first-name").val();
     var inputtedLastName = $("input#new-last-name").val();
