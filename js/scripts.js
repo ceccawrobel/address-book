@@ -15,6 +15,31 @@ AddressBook.prototype.assignId = function() {
   return this.currentId;
 }
 
+AddressBook.prototype.findContact = function(id) {
+  for (var i=0; i< this.contacts.length; i++) {
+    if (this.contacts[i]) {
+      if (this.contacts[i].id == id) {
+        return this.contacts[i];
+      }
+    }
+  };
+  return false;
+}
+
+AddressBook.prototype.deleteContact = function(id) {
+  for (var i=0; i< this.contacts.length; i++) {
+    if (this.contacts[i]) {
+      if (this.contacts[i].id == id) {
+        delete this.contacts[i];
+        return true;
+      }
+    }
+  };
+  return false;
+}
+
+
+
 // Business Logic for Contacts ----
 function Contact(firstName, lastName, phoneNumber) {
   this.firstName = firstName;
@@ -30,3 +55,4 @@ var myAddressBook = new AddressBook();
 var myContact = new Contact("Ada", "Lovelace", "123-123-1123");
 var myContact2 = new Contact("Elmo", "Rodgers", "555-123-4433");
 myAddressBook.addContact(myContact);
+myAddressBook.addContact(myContact2);
