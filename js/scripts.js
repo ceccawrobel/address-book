@@ -51,8 +51,24 @@ Contact.prototype.fullName = function() {
   return this.firstName + " " + this.lastName;
 }
 
-var myAddressBook = new AddressBook();
-var myContact = new Contact("Ada", "Lovelace", "123-123-1123");
-var myContact2 = new Contact("Elmo", "Rodgers", "555-123-4433");
-myAddressBook.addContact(myContact);
-myAddressBook.addContact(myContact2);
+// var myAddressBook = new AddressBook();
+// var myContact = new Contact("Ada", "Lovelace", "123-123-1123");
+// var myContact2 = new Contact("Elmo", "Rodgers", "555-123-4433");
+// myAddressBook.addContact(myContact);
+// myAddressBook.addContact(myContact2);
+
+// User Interface Logic ----
+var theAddressBook = new AddressBook();
+
+$(document).ready(function() {
+  $("form#new-contact").submit(function(event) {
+    event.preventDefault();
+    var inputtedFirstName = $("input#new-first-name").val();
+    var inputtedLastName = $("input#new-last-name").val();
+    var inputtedPhoneNumber = $("input#new-phone-number").val();
+    var newContact = new Contact(inputtedFirstName, inputtedLastName, inputtedPhoneNumber);
+    theAddressBook.addContact(newContact);
+    console.log(theAddressBook.contacts);
+    $("form").trigger("reset");
+  })
+})
